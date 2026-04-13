@@ -13,12 +13,20 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'name', 'email', 'team', 'team_id']
 
+
 class ActivitySerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    user_name = serializers.SerializerMethodField()
     user_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), source='user', write_only=True)
+
     class Meta:
         model = Activity
-        fields = ['id', 'user', 'user_id', 'type', 'duration', 'date']
+        fields = ['id', 'user_name', 'user_id', 'type', 'duration', 'date']
+
+    def get_user_name(self, obj):
+        try:
+            return obj.user.name if obj.user else None
+        except Exception:
+            return None
 
 class WorkoutSerializer(serializers.ModelSerializer):
     class Meta:
