@@ -134,8 +134,16 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# CORS settings
-CORS_ALLOW_ALL_ORIGINS = True
+
+# CORS settings for Codespaces frontend
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    "https://bug-free-guacamole-5gqxv6674qv27p6r-3000.app.github.dev",
+]
+# Allow all Codespaces frontend subdomains (for preview/public URLs)
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https:\/\/[a-zA-Z0-9-]+-3000\.app\.github\.dev$",
+]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = ['*']
 CORS_ALLOW_METHODS = ['*']
