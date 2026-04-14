@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 const Activities = () => {
   const [activities, setActivities] = useState([]);
-  const apiUrl = `${process.env.REACT_APP_CODESPACE_NAME ? `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev` : 'http://localhost:8000'}/api/activities/`;
+  const apiUrl = `https://${process.env.REACT_APP_CODESPACE_NAME}-8000.app.github.dev/api/activities/`;
 
   useEffect(() => {
     console.log('Fetching activities from:', apiUrl);
